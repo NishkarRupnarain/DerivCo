@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Good Match</title>
+</head>
+<body>
+<h1>Good Match</h1>
+<form>
+    Name
+    <input type="text" name="name" id="name"/>
+</form>
+<form>
+    Name Comparison
+    <input type="text" name="nameComparison" id = "nameComparison"/>
+</form>
+<button onclick="match()">Match</button>
+<script>
+
+let name = null;
+let nameComparison = null;
+
+function match(){
+name = document.getElementById("name").value;
+name = name.toString().trim();
+nameComparison = document.getElementById("nameComparison").value;
+nameComparison = nameComparison.toString().trim();
+console.log(name);
+console.log(nameComparison);
+if(/[^a-zA-Z]/.test(name) && /[^a-zA-Z]/.test(name)){
+alert("Invalid input!");
+document.getElementById('name').value = "";
+document.getElementById('nameComparison').value = "";
+}else{
+let comparison = name.toLowerCase() + "matches" + nameComparison.toLowerCase(); //no blank spaces and converted to lowercase;
+let array = comparison.split('');
+console.log(array);
+const counts = {};
+array.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+let numberString = Object.values(counts).join(""); 
+console.log(counts);
+console.log(numberString);
+let leftCounter = 0;
+while(numberString.length != 3){
+numberString = numberString.replace(Number(numberString.charAt(leftCounter)), Number(numberString.charAt(leftCounter))  + Number(numberString.charAt(numberString.length -1)));
+leftCounter++;
+numberString = numberString.substring(0,numberString.length-1);
+if((leftCounter) == (numberString.length-1)){
+leftCounter = 0;
+}
+console.log(numberString);
+}
+numberString = numberString.replace(Number(numberString.charAt(0)), Number(numberString.charAt(0))  + Number(numberString.charAt(numberString.length -1)));
+numberString = numberString.substring(0,numberString.length-1);
+console.log(numberString);
+if(numberString.length >= 3){
+numberString = numberString.replace(Number(numberString.charAt(0)), Number(numberString.charAt(0))  + Number(numberString.charAt(numberString.length -1)));
+numberString = numberString.substring(0,numberString.length-1);
+console.log(numberString);
+}else{
+console.log(numberString);
+}
+let displayString
+if(Number(numberString) >= 80){
+displayString  = name + " matches " + nameComparison + " " + numberString + "%, good match";
+console.log(displayString);
+}else{
+displayString  = name + " matches " + nameComparison + " " + numberString + "%";
+console.log(displayString);
+}
+}
+}
+</script>
+</body>
+
+</html>
