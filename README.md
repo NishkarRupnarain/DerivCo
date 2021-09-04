@@ -5,3 +5,5 @@ Type "node CSV.js" into the terminal to excute the CSV read inputs.
 **You will need to nmp install these before execution:          **
             npm install prompt,
             npm i -s csv-parser
+
+The testVerion.html logs all processes and outputs into the console.
